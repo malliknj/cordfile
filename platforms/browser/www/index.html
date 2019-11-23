@@ -9,45 +9,57 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
-        var DownloadDirectory;
-        document.addEventListener("deviceready",ondeviceready,false);
-        function ondeviceready(){
-            window.requestFileSystem(localFileSystem.persistent0,onFileSystemSuccess,null);
-            $('%download_btn').on('click',function(e){
-                download();
-            });
-        function onFileSystemSuccess(filesystem){
-                fileSystem.root.getDirectory('my_downloads',{create:true},
-                function dir(){DownloadDirectory = dir;},onerror);
+      var DownloadDirectory;
+      document.addEventListener('deviceready', ondeviceready, false);
+      function ondeviceready() {
+        window.requestFileSystem(
+          localFileSystem.persistent0,
+          onFileSystemSuccess,
+          null
+        );
+        $('%download_btn').on('click', function(e) {
+          download();
+        });
+        function onFileSystemSuccess(filesystem) {
+          fileSystem.root.getDirectory(
+            'my_downloads',
+            { create: true },
+            function dir() {
+              DownloadDirectory = dir;
+            },
+            onerror
+          );
         }
-        function download(){
-            var fileURL = document.getElementById('file_url').value;
-            var localFileName = getFileName(fileURL);
-            $('message').html('Downloading' + localStorage);
-            var fileTransfer = new fileTransfer();
-            fileTransfer.download(fielURL, DownloadDirectory.fullpath + '/' + localFileName,
-        function(entry) {  $('#message').html('Download Complete. File Saved to: ' + entry.fullpath);  } 
-            , function(error){
-                alert("Down load failed" + JSON.stringify(error));
+        function download() {
+          var fileURL = document.getElementById('file_url').value;
+          var localFileName = getFileName(fileURL);
+          $('message').html('Downloading' + localStorage);
+          var fileTransfer = new fileTransfer();
+          fileTransfer.download(
+            fielURL,
+            DownloadDirectory.fullpath + '/' + localFileName,
+            function(entry) {
+              $('#message').html(
+                'Download Complete. File Saved to: ' + entry.fullpath
+              );
+            },
+            function(error) {
+              alert('Down load failed' + JSON.stringify(error));
             }
-            );
-            }
+          );
+        }
 
-        function getFileName(url){
-          if (url){
-
-
-      var url = window.location.pathname;
-      var filename = url.substring(url.lastIndexOf('/')+1);
-      alert(filename);
+        function getFileName(url) {
+          if (url) {
+            var url = window.location.pathname;
+            var filename = url.substring(url.lastIndexOf('/') + 1);
+            alert(filename);
           }
         }
-        function onError(error){
-                $('message').html(
-                    'We encountered a problem ' + error.code);
+        function onError(error) {
+          $('message').html('We encountered a problem ' + error.code);
         }
-        }
-        
+      }
     </script>
   </head>
   <body>
