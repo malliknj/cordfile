@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="onsen.adder.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" 
 xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>2-adder</name>
+    <name>File DownLoad</name>
     <description>
-        A simple calculator app
+        FileUploadAndDownload Function
     </description>
     <author email="mallik@njsys.net" href="http://njsys.net">
         Android Research
